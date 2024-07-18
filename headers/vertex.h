@@ -3,4 +3,10 @@
 
 typedef struct Vertex Vertex;
 
+enum VertexType{
+    CLIENT = 'C',
+    MONITOR = 'M',
+    SERVER = 'S'
+};
+
 #endif
