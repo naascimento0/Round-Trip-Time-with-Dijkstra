@@ -11,6 +11,8 @@ Graph* graphInitialize(int numVertices, int numEdges);
 
 void graphAddVertex(Graph *graph, Vertex *vertex, int index);
 
+void graphAddEdge(Graph *graph, Edge *edge, int index);
+
 void graphDebug(Graph *graph);
 
 Graph* graphCreateFromInput(FILE *inputFile);

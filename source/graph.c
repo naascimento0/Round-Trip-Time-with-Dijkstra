@@ -20,15 +20,18 @@ void graphAddVertex(Graph *graph, Vertex *vertex, int index){
     graph->vertices[index] = vertex;
 }
 
+void graphAddEdge(Graph *graph, Edge *edge, int index){
+    graph->edges[index] = edge;
+}
+
 void graphDebug(Graph *graph){
     printf("Vertices:\n");
     for(int i = 0; i < graph->numVertices; i++)
         printf("Vertex %d: %d %c\n", i, getVertexId(graph->vertices[i]), getVertexType(graph->vertices[i]));
 
-    // printf("Edges:\n");
-    // for(int i = 0; i < graph->numEdges; i++){
-    //     printf("Edge %d: %c %c %f\n", i, graph->edges[i]->source, graph->edges[i]->destination, graph->edges[i]->weight);
-    // }
+    printf("Edges:\n");
+    for(int i = 0; i < graph->numEdges; i++)
+        printf("Edge %d: %d %d %lf\n", i, getEdgeSource(graph->edges[i]), getEdgeDestination(graph->edges[i]), getEdgeWeight(graph->edges[i]));
 }
 
 Graph* graphCreateFromInput(FILE *inputFile){
@@ -61,12 +64,22 @@ Graph* graphCreateFromInput(FILE *inputFile){
     	if(graph->vertices[i] == NULL)
     		graphAddVertex(graph, vertexInitialize(i, REGULAR), i);
 
+    for(int i = 0; i < numEdges; i++){
+        int source, destination;
+        double weight;
+        fscanf(inputFile, "%d %d %lf", &source, &destination, &weight);
+        graphAddEdge(graph, edgeInitialize(source, destination, weight), i);
+    }
+
     return graph;
 }
 
 void graphDestroy(Graph *graph){
 	for(int i = 0; i < graph->numVertices; i++)
 		vertexDestroy(graph->vertices[i]);
+
+    for(int i = 0; i < graph->numEdges; i++)
+        edgeDestroy(graph->edges[i]);
 
 	free(graph->vertices);
 	free(graph->edges);
