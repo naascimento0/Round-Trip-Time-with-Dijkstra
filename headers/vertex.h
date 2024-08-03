@@ -6,18 +6,13 @@
 
 typedef struct Vertex Vertex;
 
-enum VertexType{
-    CLIENT = 'C',
-    MONITOR = 'M',
-    SERVER = 'S',
-	REGULAR = 'R'
-};
+Vertex* vertexInitialize(int id);
 
-Vertex* vertexInitialize(int id, char type);
+void vertexAddEdge(Vertex *vertex, int destination);
 
 int getVertexId(Vertex *vertex);
 
-char getVertexType(Vertex *vertex);
+void vertexDebug(Vertex *vertex);
 
 void vertexDestroy(Vertex *vertex);
 
