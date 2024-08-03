@@ -9,7 +9,7 @@ typedef struct Graph Graph;
 
 Graph* graphInitialize(int numVertices, int numEdges);
 
-void graphAddVertex(Graph *graph, Vertex *vertex, int index);
+void graphAddVertex(Graph *graph, Vertex *vertex);
 
 void graphAddEdge(Graph *graph, Edge *edge, int index);
 
