@@ -7,15 +7,32 @@
 
 typedef struct Graph Graph;
 
+typedef struct{
+    int *server;
+    int numServers;
+    int *client;
+    int numClients;
+    int *monitor;
+    int numMonitors;
+    int *regular;
+    int numRegulars;
+}IndexSet;
+
 Graph* graphInitialize(int numVertices, int numEdges);
+
+Graph* graphCreateFromInput(FILE *inputFile);
 
 void graphAddVertex(Graph *graph, Vertex *vertex);
 
 void graphAddEdge(Graph *graph, Edge *edge, int index);
 
-void graphDebug(Graph *graph);
+int getNumVertices(Graph *graph);
+int getNumEdges(Graph *graph);
+Vertex** getVertices(Graph *graph);
+Edge** getEdges(Graph *graph);
+IndexSet* getIndexSet(Graph *graph);
 
-Graph* graphCreateFromInput(FILE *inputFile);
+void graphDebug(Graph *graph);
 
 void graphDestroy(Graph *graph);
 
