@@ -2,18 +2,19 @@
 #define EDGE_H_
 
 #include <stdlib.h>
+#include <stdio.h>
 
-typedef struct Edge Edge;
+typedef struct{
+    int destination;
+    double weight;
+}Edge;
 
-Edge* edgeInitialize(int source, int destination, double weight);
-
-Edge** getVertexAdjacencyList(Edge **edges, int numEdges, int id, int *adjacencyListSize);
-
-int getEdgeSource(Edge *edge);
+Edge* edgeCreate(int destination, double weight);
 
 int getEdgeDestination(Edge *edge);
-
 double getEdgeWeight(Edge *edge);
+
+void edgePrint(Edge *edge);
 
 void edgeDestroy(Edge *edge);
 

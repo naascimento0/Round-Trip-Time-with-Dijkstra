@@ -1,9 +1,10 @@
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "edge.h"
-#include "vertex.h"
+#include "data_structures/forward_list.h"
 
 typedef struct Graph Graph;
 
@@ -14,22 +15,15 @@ typedef struct{
     int numClients;
     int *monitor;
     int numMonitors;
-    int *regular;
-    int numRegulars;
 }IndexSet;
 
 Graph* graphInitialize(int numVertices, int numEdges);
 
 Graph* graphCreateFromInput(FILE *inputFile);
 
-void graphAddVertex(Graph *graph, Vertex *vertex);
-
-void graphAddEdge(Graph *graph, Edge *edge, int index);
-
 int getNumVertices(Graph *graph);
 int getNumEdges(Graph *graph);
-Vertex** getVertices(Graph *graph);
-Edge** getEdges(Graph *graph);
+ForwardList** getEdges(Graph *graph);
 IndexSet* getIndexSet(Graph *graph);
 
 void graphDebug(Graph *graph);
