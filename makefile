@@ -1,12 +1,22 @@
 CC = gcc
-FILE = input/main_input.txt
+INPUT = input/N10_S3_C3_M3.txt
+OUTPUT = saida.txt
 EXEC = trab2
 
-make:
-	$(CC) -o $(EXEC) main.c source/*.c -lm
+all: object compile
+
+object:
+	mkdir -p objects
+	gcc -g -c main.c source/*.c source/data_structures/*.c -Iheaders && mv *.o objects/
+
+compile:
+	gcc -o $(EXEC) objects/*.o -lm
 
 run:
-	./$(EXEC)  $(FILE) 2
+	@./$(EXEC)  $(INPUT) $(OUTPUT)
 	
 valgrind:
-	valgrind --track-origins=yes ./$(EXEC)  $(FILE) 2
+	@valgrind --track-origins=yes --leak-check=full -s ./$(EXEC)  $(INPUT) $(OUTPUT)
+
+clean:
+	rm -r $(EXEC) objects

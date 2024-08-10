@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "headers/graph.h"
+#include "headers/rtt.h"
 
 int main(int argc, char **argv){
     if(argc != 3)
@@ -13,7 +14,7 @@ int main(int argc, char **argv){
     Graph *graph = graphCreateFromInput(inputFile);
     fclose(inputFile);
 
-    graphDebug(graph);
+    RTT(graph, argv[2]);
 
     graphDestroy(graph);
 

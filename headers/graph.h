@@ -1,21 +1,32 @@
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "edge.h"
-#include "vertex.h"
+#include "data_structures/forward_list.h"
 
 typedef struct Graph Graph;
 
+typedef struct{
+    int *server;
+    int numServers;
+    int *client;
+    int numClients;
+    int *monitor;
+    int numMonitors;
+}IndexSet;
+
 Graph* graphInitialize(int numVertices, int numEdges);
 
-void graphAddVertex(Graph *graph, Vertex *vertex);
+Graph* graphCreateFromInput(FILE *inputFile);
 
-void graphAddEdge(Graph *graph, Edge *edge, int index);
+int getNumVertices(Graph *graph);
+int getNumEdges(Graph *graph);
+ForwardList** getEdges(Graph *graph);
+IndexSet* getIndexSet(Graph *graph);
 
 void graphDebug(Graph *graph);
-
-Graph* graphCreateFromInput(FILE *inputFile);
 
 void graphDestroy(Graph *graph);
 
